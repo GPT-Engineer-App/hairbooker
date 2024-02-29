@@ -5,10 +5,12 @@ import AppointmentScheduling from "./pages/AppointmentScheduling.jsx";
 import StylistSelection from "./pages/StylistSelection.jsx";
 import Confirmation from "./pages/Confirmation.jsx";
 import UserProfile from "./pages/UserProfile.jsx";
+import Navigation from "./components/Navigation.jsx"; // Import the Navigation component
 
 function App() {
   return (
     <Router>
+      <Navigation /> {/* Use the Navigation component */}
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/services" element={<ServiceSelection />} />
