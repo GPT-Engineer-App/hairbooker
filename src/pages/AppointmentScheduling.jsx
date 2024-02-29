@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { Box, Heading, Grid, GridItem } from "@chakra-ui/react";
+import { Box, Heading, Grid, GridItem, Text } from "@chakra-ui/react";
 
 const AppointmentScheduling = () => {
+  const [selectedDate, setSelectedDate] = useState(null);
+
+  const handleDateClick = (date) => {
+    setSelectedDate(date);
+  };
   return (
     <Box p={5}>
       <Heading as="h1" size="xl" mb={6}>
