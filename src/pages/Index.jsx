@@ -71,7 +71,7 @@ const Index = () => {
                   <FormLabel htmlFor="password">Password</FormLabel>
                   <Input id="password" name="password" type="password" placeholder="Password" />
                 </FormControl>
-                <Button type="submit" colorScheme="blue" leftIcon={<FaRegCalendarAlt />}>
+                <Button type="submit" colorScheme="red" leftIcon={<FaRegCalendarAlt />}>
                   Sign Up
                 </Button>
               </Stack>
