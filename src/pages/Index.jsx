@@ -25,18 +25,38 @@ const Index = () => {
 
   const toast = useToast();
 
-  // Placeholder functions for API calls
   const registerUser = async (userData) => {
-    // Here you would make an API call to /user/register
-    // For now, we'll just simulate a successful registration
-    toast({
-      title: "Account created.",
-      description: "We've created your account for you.",
-      status: "success",
-      duration: 9000,
-      isClosable: true,
-    });
-    setUser(userData);
+    try {
+      const response = await fetch("https://backengine-9e07.fly.dev/user/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      toast({
+        title: "Account created.",
+        description: "We've created your account for you.",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      });
+      setUser(result);
+    } catch (error) {
+      toast({
+        title: "Error creating account.",
+        description: error.message,
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
+    }
   };
 
   // ... other functions for login, fetching services, stylists, appointments ...
