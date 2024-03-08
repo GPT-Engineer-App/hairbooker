@@ -7,14 +7,36 @@ const UserProfile = () => {
   const [password, setPassword] = useState("");
   const toast = useToast();
 
-  const handleLogin = () => {
-    toast({
-      title: "Login Attempt",
-      description: "You attempted to log in.",
-      status: "info",
-      duration: 5000,
-      isClosable: true,
-    });
+  const handleLogin = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        toast({
+          title: "Login Successful",
+          description: "You have successfully logged in.",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+      } else {
+        throw new Error(data.message || "Login failed. Please try again.");
+      }
+    } catch (error) {
+      toast({
+        title: "Login Failed",
+        description: error.message,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
   };
 
   return (
