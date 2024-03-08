@@ -25,10 +25,33 @@ const Index = () => {
 
   const toast = useToast();
 
-  // Placeholder functions for API calls
   const registerUser = async (userData) => {
-    // Here you would make an API call to /user/register
-    // For now, we'll just simulate a successful registration
+    const response = await fetch("http://localhost:3000/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
+    const data = await response.json();
+    if (response.ok) {
+      toast({
+        title: "Account created.",
+        description: "We've created your account for you.",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      });
+      setUser(data);
+    } else {
+      toast({
+        title: "Failed to create account.",
+        description: data.message || "There was an error processing your request.",
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
+    }
     toast({
       title: "Account created.",
       description: "We've created your account for you.",
