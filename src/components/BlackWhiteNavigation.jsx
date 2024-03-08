@@ -4,7 +4,7 @@ import { Link as RouterLink } from "react-router-dom";
 
 const BlackWhiteNavigation = () => {
   return (
-    <Flex as="nav" bg="black" color="white" p={4} justify="space-around">
+    <Flex as="nav" bg="white" color="black" p={4} justify="space-around">
       <Box>
         <Link as={RouterLink} to="/" p={2}>
           Home
